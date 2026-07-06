@@ -6,13 +6,14 @@ import LossCurve from '../components/charts/LossCurve'
 import DataHistogram from '../components/charts/DataHistogram'
 import MetricDashboard from '../components/charts/MetricDashboard'
 import { useApi } from '../hooks/useApi'
+import { MOCK_LOSS_DATA } from '../data/staticData'
 
 const Visualization = () => {
   const [logs, setLogs] = useState([])
   const [selectedLogId, setSelectedLogId] = useState('')
   const [metricsData, setMetricsData] = useState([])
   const [histogramData, setHistogramData] = useState([])
-  const { get, loading } = useApi()
+  const { get, loading, isStaticMode } = useApi()
 
   useEffect(() => {
     get('/api/codes').then(data => {
@@ -20,6 +21,9 @@ const Visualization = () => {
         setLogs(data)
         if (data.length > 0) {
           setSelectedLogId(String(data[0].id))
+        } else if (isStaticMode) {
+          // In static mode, show demo loss curve directly
+          setSelectedLogId('demo')
         }
       }
     }).catch(console.error)
@@ -31,6 +35,11 @@ const Visualization = () => {
 
   useEffect(() => {
     if (!selectedLogId) return
+    if (selectedLogId === 'demo') {
+      // Use mock data in static demo mode
+      setMetricsData(MOCK_LOSS_DATA)
+      return
+    }
     get(`/api/viz/metrics/${selectedLogId}`).then(data => {
       if (data?.data) setMetricsData(data.data)
     }).catch(console.error)
@@ -74,6 +83,7 @@ const Visualization = () => {
             onChange={(e) => setSelectedLogId(e.target.value)}
             className="px-3 py-1.5 rounded-lg bg-navy-dark border border-navy-lighter text-white text-sm focus:outline-none focus:border-accent/50"
           >
+            {isStaticMode && <option value="demo">演示数据</option>}
             {logs.map(log => (
               <option key={log.id} value={log.id}>{log.project_name}</option>
             ))}

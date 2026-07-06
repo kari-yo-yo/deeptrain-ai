@@ -22,10 +22,14 @@ const AgentParser = () => {
   const [projectName, setProjectName] = useState('')
   const [dataset, setDataset] = useState('')
   const [modelArch, setModelArch] = useState('')
-  const { post, loading } = useApi()
+  const { post, loading, isStaticMode } = useApi()
 
   const handleParse = async () => {
     if (!rawLog.trim()) return
+    if (isStaticMode) {
+      alert('智能解析功能需要连接后端服务。请配置 VITE_API_BASE_URL 环境变量后重新构建。')
+      return
+    }
     try {
       const data = await post('/api/agent/parse', { raw_log: rawLog })
       setResult(data)
@@ -37,6 +41,10 @@ const AgentParser = () => {
 
   const handleSave = async () => {
     if (!rawLog.trim()) return
+    if (isStaticMode) {
+      alert('保存功能需要连接后端服务。请配置 VITE_API_BASE_URL 环境变量后重新构建。')
+      return
+    }
     try {
       const formData = new URLSearchParams()
       formData.append('project_name', projectName || '未命名项目')
