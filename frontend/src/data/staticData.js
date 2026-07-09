@@ -47,6 +47,13 @@ export const STATIC_TUTORIALS = [
     content: "## 查看训练结果\n\n1. 在 JupyterLab 中直接查看生成的图片\n2. 使用 TensorBoard 查看 loss 曲线\n3. 查看保存的模型文件（通常在 `checkpoints/` 目录）\n\n## 下载模型\n\n### 方式一：JupyterLab 下载\n右键文件 → Download\n\n### 方式二：SFTP 下载\n使用 XFTP / FileZilla 连接下载\n\n### 方式三：OSS 回传\n将模型上传到阿里云 OSS，然后本地下载",
     category: "basic",
     order_index: 6
+  },
+  {
+    id: 7,
+    title: "复现 GitHub 上的深度学习项目",
+    content: "## 为什么要复现他人项目？\n\n复现（Reproduce）是学习深度学习的最佳方式之一。通过运行别人的代码，你可以：\n\n- **学习代码结构**：了解一个完整项目的组织方式\n- **掌握调参技巧**：观察作者使用的超参数组合\n- **验证论文结论**：确认论文中的结果是否可复现\n- **作为基线模型**：在自己的数据集上进行对比实验\n\n## 步骤一：找到合适的项目\n\n在 GitHub 搜索时，关注以下指标：\n\n| 指标 | 建议 |\n|------|------|\n| Stars | > 100 说明有一定认可度 |\n| 最近更新 | 3 个月内有提交较好 |\n| README | 完整的安装和数据说明 |\n| Issues | 关闭率高，维护积极 |\n\n搜索关键词示例：\n```\npytorch image classification\nresnet50 fine-tune github\ndeep learning object detection pytorch\n```\n\n## 步骤二：克隆并安装\n\n```bash\n# 1. 克隆项目\ngit clone https://github.com/原作者/项目名.git\ncd 项目名\n\n# 2. 创建独立环境（避免依赖冲突）\nconda create -n reproduce python=3.10\nconda activate reproduce\n\n# 3. 安装依赖\npip install -r requirements.txt\n```\n\n## 步骤三：准备数据（最关键）\n\n数据准备是复现失败的最常见原因。务必仔细阅读 README 中的数据说明：\n\n### 检查数据路径\n打开 `train.py` 或 `config.py`，找到数据路径配置：\n\n```python\n# 常见数据路径配置\ndata_path = './data/cifar10'    # ← 改为你本地的路径\n```\n\n### 数据格式要求\n大多数 PyTorch 项目使用 `ImageFolder` 格式：\n\n```\ndata/\n  train/\n    class_a/\n      img1.jpg\n      img2.jpg\n    class_b/\n      img1.jpg\n  val/\n    class_a/\n    class_b/\n```\n\n### 修改类别数\n确保模型输出层与你的数据类别数一致：\n\n```python\n# 在模型定义中找到 num_classes\nmodel = ResNet(num_classes=10)   # ← 改为你的类别数\n```\n\n## 步骤四：运行训练\n\n```bash\n# 基础运行\npython train.py\n\n# 带参数运行\npython train.py --epochs 50 --batch_size 32 --lr 0.001\n\n# 后台运行\nnohup python train.py > train.log 2>&1 &\n```\n\n## 步骤五：调试常见问题\n\n| 问题 | 解决方案 |\n|------|----------|\n| `ModuleNotFoundError` | 检查是否安装了所有依赖，`pip install -r requirements.txt` |\n| `CUDA out of memory` | 减小 batch_size，如从 32 改为 16 |\n| `FileNotFoundError` | 检查数据路径是否正确，使用绝对路径 |\n| `RuntimeError: CUDA error` | PyTorch CUDA 版本与驱动不匹配，重新安装对应版本 |\n| Loss 不下降 | 检查学习率是否过大/过小，检查数据预处理是否正确 |",
+    category: "basic",
+    order_index: 7
   }
 ]
 
