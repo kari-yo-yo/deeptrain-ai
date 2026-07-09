@@ -9,6 +9,7 @@ import {
   FolderGit2,
   GitCompare,
   BarChart3,
+  Github,
 } from 'lucide-react'
 
 const navItems = [
@@ -19,6 +20,7 @@ const navItems = [
   { path: '/codes', icon: FolderGit2, label: '代码仓库' },
   { path: '/compare', icon: GitCompare, label: '代码对比' },
   { path: '/viz', icon: BarChart3, label: '可视化' },
+  { path: '/github-setup', icon: Github, label: '项目源码' },
 ]
 
 const Sidebar = () => {

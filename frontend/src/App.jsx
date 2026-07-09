@@ -10,6 +10,7 @@ import AgentParser from './pages/AgentParser'
 import CodeRepo from './pages/CodeRepo'
 import CodeCompare from './pages/CodeCompare'
 import Visualization from './pages/Visualization'
+import GitHubSetup from './pages/GitHubSetup'
 
 const pageVariants = {
   initial: { opacity: 0, x: 20 },
@@ -33,6 +34,7 @@ function App() {
               <Route path="/codes" element={<PageWrapper><CodeRepo /></PageWrapper>} />
               <Route path="/compare" element={<PageWrapper><CodeCompare /></PageWrapper>} />
               <Route path="/viz" element={<PageWrapper><Visualization /></PageWrapper>} />
+              <Route path="/github-setup" element={<PageWrapper><GitHubSetup /></PageWrapper>} />
             </Routes>
           </AnimatePresence>
         </main>

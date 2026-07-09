@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
-import { BookOpen, Cpu, FolderGit2, BarChart3, ArrowRight, Sparkles } from 'lucide-react'
+import { BookOpen, Cpu, FolderGit2, BarChart3, ArrowRight, Sparkles, Github } from 'lucide-react'
 import GlassCard from '../components/ui/GlassCard'
 import { useApi } from '../hooks/useApi'
 
@@ -22,6 +22,7 @@ const quickLinks = [
   { icon: Cpu, label: 'Agent 实验室', desc: '粘贴日志智能解析', path: '/agent', color: 'text-blue-400' },
   { icon: FolderGit2, label: '代码仓库', desc: '管理与复用历史代码', path: '/codes', color: 'text-purple-400' },
   { icon: BarChart3, label: '可视化', desc: 'Loss 曲线与数据分布', path: '/viz', color: 'text-orange-400' },
+  { icon: Github, label: '项目源码', desc: 'GitHub 下载与运行指南', path: '/github-setup', color: 'text-green-400' },
 ]
 
 const Dashboard = () => {

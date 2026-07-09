@@ -1,5 +1,12 @@
 export const STATIC_TUTORIALS = [
   {
+    id: 0,
+    title: "如何下载并运行 DeepTrain AI",
+    content: "## 项目简介\n\nDeepTrain AI 是一个开源的深度学习训练助手，帮助你管理 AutoDL 上的训练任务。本项目基于 React + FastAPI 构建。\n\n## 从 GitHub 下载\n\n```bash\n# 克隆仓库\ngit clone https://github.com/kari-yo-yo/deeptrain-ai.git\n\n# 进入项目目录\ncd deeptrain-ai\n```\n\n## 安装前端依赖\n\n```bash\ncd frontend\nnpm install\n```\n\n## 安装后端依赖\n\n```bash\ncd ../backend\n\n# 创建虚拟环境（推荐）\npython -m venv venv\n\n# Windows 激活\nvenv\\Scripts\\activate\n\n# 安装依赖\npip install -r requirements.txt\n```\n\n## 启动服务\n\n**后端（终端1）**：\n```bash\ncd backend\npython -m uvicorn app.main:app --reload --port 8000\n```\n\n**前端（终端2）**：\n```bash\ncd frontend\nnpm run dev\n```\n\n然后打开 http://localhost:5173 即可使用。",
+    category: "basic",
+    order_index: 0
+  },
+  {
     id: 1,
     title: "AutoDL 平台简介与注册",
     content: "## AutoDL 是什么？\n\nAutoDL 是国内领先的 GPU 云服务器租赁平台，提供按小时计费的 GPU 实例。\n\n### 注册流程\n1. 访问 [AutoDL 官网](https://www.autodl.com)\n2. 点击右上角「注册」按钮\n3. 使用手机号或邮箱完成注册\n4. 实名认证后即可创建实例\n\n### 充值与计费\n- 支持支付宝、微信充值\n- 按小时计费，关机不计费\n- 新用户通常有优惠券",
